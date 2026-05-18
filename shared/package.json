@@ -1,0 +1,7 @@
+{
+  "name": "shared",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.js"
+  }
+}
