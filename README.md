@@ -19,6 +19,10 @@ cd shared
 npm run generate
 ```
 
+Each app has a `predev`/`prebuild` script that automatically copies `items.json` and the images from `shared/` into the app:
+
+The sync runs on first start (copies 500 images, ~1–2 sec) and skips on subsequent runs as long as `shared/images/` and `apps/*/public/images/` are in sync.
+
 ## Planned measurements
 
 **Metrics:** FCP, LCP, TBT, CLS, INP, TTFB, Hydration-timestamps
