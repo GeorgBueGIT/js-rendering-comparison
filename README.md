@@ -53,3 +53,6 @@ npm run preview
 - [ ] Astro (SSR, SSG, Partial Hydration)
 - [ ] Benchmark-Setup
 - [ ] Deployment
+
+
+git push github main (Für pushen auf Github -> besser für cloudflare pages)
