@@ -1,0 +1,27 @@
+---
+// src/components/ItemCard.astro
+import { Counter } from './Counter';
+import type { Item } from '../types';
+
+interface Props {
+  item: Item;
+  showCounter: boolean;
+  lazy: boolean;
+}
+
+const { item, showCounter, lazy } = Astro.props;
+---
+
+<li class="card">
+  <img
+    src={item.imageUrl}
+    alt={item.title}
+    width={400}
+    height={300}
+    loading={lazy ? 'lazy' : 'eager'}
+  />
+  <h2>{item.title}</h2>
+  <p class="desc">{item.description}</p>
+  <span class="price">{item.price}</span>
+  {showCounter && <Counter client:load />}
+</li>

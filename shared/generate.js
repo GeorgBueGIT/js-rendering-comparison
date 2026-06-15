@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const IMAGES_DIR = path.resolve(__dirname, './images');
-const COUNT = 10;
+const COUNT = 500;
 
 fs.mkdirSync(IMAGES_DIR, { recursive: true });
 
@@ -24,7 +24,7 @@ function download(i) {
   return new Promise((resolve, reject) => {
     const file = path.join(IMAGES_DIR, `${i}.jpg`);
     if (fs.existsSync(file)) return resolve('skip');
-    https.get(`https://picsum.photos/seed/${i}/400/300`, res => {
+    https.get(`https://picsum.photos/seed/${i}/2000/1500`, res => {
       // picsum redirected — folge dem Location-Header
       if (res.statusCode === 302 || res.statusCode === 301) {
         https.get(res.headers.location, r => r.pipe(fs.createWriteStream(file)).on('finish', () => resolve('ok')));
@@ -39,6 +39,6 @@ function download(i) {
 const BATCH = 10;
 for (let i = 1; i <= COUNT; i += BATCH) {
   await Promise.all(Array.from({ length: BATCH }, (_, j) => download(i + j)));
-  console.log(`${i + BATCH}/${COUNT}`);
+  console.log(`${i-1 + BATCH}/${COUNT}`);
 }
 console.log('Done');

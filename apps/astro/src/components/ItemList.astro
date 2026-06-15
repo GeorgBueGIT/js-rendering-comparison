@@ -1,0 +1,25 @@
+---
+// src/components/ItemList.astro
+import ItemCard from './ItemCard.astro';
+import items from '../items.json';
+import type { Item } from '../types';
+
+interface Props {
+  itemCount: number;
+  showCounter: boolean;
+  lazyImages: boolean;
+}
+
+const { itemCount, showCounter, lazyImages } = Astro.props;
+const visible = (items as Item[]).slice(0, itemCount);
+---
+
+<ul>
+  {visible.map((item, i) => (
+    <ItemCard
+      item={item}
+      showCounter={showCounter}
+      lazy={lazyImages && i >= 6}
+    />
+  ))}
+</ul>
